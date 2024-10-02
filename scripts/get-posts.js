@@ -50,15 +50,17 @@ const getPosts = async () => {
 const mapPosts = (posts) => {
   const bricktober = posts.user
   const mappedPosts = posts.items.map((post) => {
+    const date = new Date(post.caption?.created_at_utc * 1000);
     return {
       id: post.caption?.id,
       code: post.code,
-      user: post.caption?.user,
-      text: post.caption?.text,
+      user: post.caption?.user || "",
+      text: post.caption?.text || "",
       likers: post.likers,
       likes: post.like_count,
       thumbnail: post.thumbnail_url,
       created_at: post.caption?.created_at_utc,
+      day: date.getDate(),
     }
   });
   return {

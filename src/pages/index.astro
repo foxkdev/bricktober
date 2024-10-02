@@ -37,12 +37,13 @@ if(day < 15) {
 
 
 const getPosts = (day: number) => {
+	console.log('POSTS', posts.posts.length)
 	return posts.posts.filter((post: any) => {
-		const postDay = new Date(post.created_at * 1000).getDate();
-		if(!postDay) {
-			return false;
-		}
-		return postDay === day;
+		// const postDay = new Date(post.created_at * 1000).getDate();
+		// if(!postDay) {
+		// 	return true;
+		// }
+		return post.day === day;
 	}).sort((a, b) => {
 		return b.likes - a.likes;
 	});

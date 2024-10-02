@@ -2,6 +2,8 @@
 import Layout from '../layouts/Layout.astro';
 import Post from '../components/Post.astro';
 import posts from '../../scripts/data.json';
+import days from '../../scripts/days.json';
+
 
 let menu: Array<number> = [];
 
@@ -45,6 +47,8 @@ const getPosts = (day: number) => {
 		return b.likes - a.likes;
 	});
 }
+
+
 ---
 
 <Layout title="Bricktober 2024">
@@ -56,13 +60,17 @@ const getPosts = (day: number) => {
 				Cada dia de la semana tiene una tematica diferente, puedes ver los detalles en el instagram de <a href="https://instagram.com/bricktober2024" target="_blank" class="text-gradient">@bricktober2024</a> para participar!
 			</p>
 			<div class="w-full grid grid-flow-col grid-cols-auto gap-1 my-3">
-				{day > 1 && <a class="text-xl bg-[#23262d] p-3 rounded" href={`/?day=${day-1}`}>&lt;</a>}
+				{day > 1 && <a class="text-xl bg-[#23262d] text-center p-3 rounded" href={`/?day=${day-1}`}>&lt;</a>}
 				{menu.map((d) => (
-					<a class={`text-xl bg-[#23262d] p-3 rounded cursor-pointer ${d > day ? 'bg-gray-700' : ''} ${d === day ? 'active-day' : ''}`} href={`/?day=${d}`}>D{d}</a>
+					<a class={`text-xl bg-[#23262d] text-center p-3 rounded cursor-pointer ${d > day ? 'bg-gray-700' : ''} ${d === day ? 'active-day' : ''}`} href={`/?day=${d}`}>D{d}</a>
 				))}
-				{day < 31 && <a class="text-xl bg-[#23262d] p-3 rounded" href={`/?day=${day+1}`}>&gt;</a>}
+				{day < 31 && <a class="text-xl bg-[#23262d] text-center p-3 rounded" href={`/?day=${day+1}`}>&gt;</a>}
 			</div>
 
+			<div class="flex w-full justify-center text-3xl my-6">
+				<!-- @ts-ignore -->
+				Palabra del dia: <span class="text-gradient font-bold mx-3">{days[day]}</span>
+			</div>
 			<div class="grid grid-cols-3 gap-3 flex-wrap w-full h-full">
 				{getPosts(day).map((post) => (
 					// @ts-ignore

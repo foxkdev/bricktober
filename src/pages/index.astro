@@ -69,6 +69,7 @@ const getPosts = (day: number) => {
 					<Post {...post}  />
 				))}
 			</div>
+			{getPosts(day).length === 0 && <p class="text-center w-full">No hay publicaciones para este dia</p>}
 		</main>
 	</div>
 </Layout>

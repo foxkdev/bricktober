@@ -27,26 +27,7 @@ jobs:
     - name: Install dependencies
       run: npm install
 
-    - name: Run get-posts script
-      run: node scripts/get-posts.js
+    # - name: Run get-posts script
+    #   run: node scripts/get-posts.js
 
-    - name: Configure Git
-      run: |
-        git config --global user.name 'github-actions[bot]'
-        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-
-    - name: Check for changes
-      run: |
-        git add .
-        git diff --cached --exit-code || echo "Changes detected"
-
-    - name: Commit changes
-      if: success() && steps.check-for-changes.outputs.changes
-      run: |
-        git commit -m "Update posts [skip ci]"
-
-    - name: Push changes
-      if: success()
-      run: git push
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - uses: stefanzweifel/git-auto-commit-action@v5

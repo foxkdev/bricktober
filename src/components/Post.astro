@@ -1,0 +1,24 @@
+---
+interface Props {
+	id: string;
+  user: any;
+  text: string;
+  likers: Array<object>;
+  likes: number;
+  thumbnail: string;
+  created_at: number;
+  code: string;
+}
+
+const {id, user, code, text, likers, likes, thumbnail, created_at} = Astro.props;
+---
+
+<div class="flex flex-col bg-[#23262d] rounded">
+  <a href=`https://www.instagram.com/p/${code}` target="_blank">
+    <img src={thumbnail} class="w-auto aspect-square rounded-t">
+  </a>
+  <div class="flex flex-row justify-between p-3">
+    <span class="font-bold text-lg">Usuario: <a class="font-medium text-gradient" href=`https://instagram.com/${user?.username}` target="_blank">{user?.username}</a></span>
+    <span>Likes: {likes}</span>
+  </div>
+</div>

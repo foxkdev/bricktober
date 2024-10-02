@@ -1,8 +1,8 @@
-name: Run Get Posts Script and Commit Changes
+name: Get Posts From Instagram Every Hour
 
 on:
   schedule:
-    # Ejecuta el job cada hora
+    # Every hour
     - cron: '0 * * * *'
 
 jobs:
@@ -16,7 +16,7 @@ jobs:
     - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: '16' # Asegúrate de usar la versión de Node.js que necesites
+        node-version: '16'
 
     - name: Install dependencies
       run: npm install

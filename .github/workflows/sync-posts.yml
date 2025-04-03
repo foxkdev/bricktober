@@ -1,8 +1,6 @@
 name: Get Posts From Instagram Every Hour
 
 on:
-  schedule:
-    - cron: '0 */1 * * *'
   workflow_dispatch:
     inputs:
       date:
